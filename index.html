@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <style>
+body{
+    margin: 0;
+    padding: 0;
+    background-color: salmon;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.clock{
+width: 400px;
+height: 400px;
+background-color: seashell;
+border-radius: 50%;
+border: 5px solid sienna;
+position: relative;
+box-shadow: 1px 1px 4px rgba(0, 0, 0, .7);
+}
+.numbers div{
+position: absolute;
+color: sienna;
+font-size: 27px;
+font-family: sans-serif;
+font-weight: bold;
+text-shadow:1px 1px 2px rgba(0, 0, 0, .7) ;
+}
+.twelve{
+    left: 50%;
+    top: 6px;
+    transform: translateX(-50%);  
+}
+.three{
+    right: 6px;
+    top:50%;
+    transform: translateY(-50%);  
+}
+.six{
+    left: 50%;
+    bottom: 6px;
+    transform: translateX(-50%);  
+}
+.nine{
+    left: 6px;
+    top: 50%;
+    transform: translateY(-50%);  
+}
+.arrows{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;  
+}
+.arrows::before{
+    content: "";
+    width: 25px;
+    height: 25px;
+    background-color: #C69435;
+  border-radius: 50%;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, .7);
+  z-index: 4;
+}
+.arrows div{
+    background-color: white;
+    width: 7px;
+    height: 120px;
+    position: absolute;
+    transform-origin: bottom center;
+    bottom: 50%;
+    z-index: 3;
+    border-radius:50% 50% 0 0 ;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, .3);
+}
+.arrows .hour{
+    height: 80px;
+    transform: rotate(30deg);
+}
+
+.arrows .second{
+    width: 3px;
+    background-color: red;
+    transform: rotate(250deg);
+}
+
+
+img{
+    width: 100px;
+    position: absolute;
+    left: 50%;
+    top: 60px;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+    </style>
+</head>
+<body>
+    <div class="clock">
+        <div class="numbers">
+            <div class="twelve">12</div>
+            <div class="three">3</div>
+            <div class="six">6</div>
+            <div class="nine">9</div>
+        </div>
+        <div class="arrows">
+            <div class="hour"></div>
+            <div class="minute"></div>
+            <div class="second"></div>
+        </div>
+     <img src="https://www.freepnglogos.com/uploads/rolex-png-logo/rolex-emblem-png-logo-4.png" alt="">
+    </div>
+</body>
+
+<script>
+    const hourE1 = document.querySelector(".hour")
+    const minuteE1 = document.querySelector(".minute")
+    const secondE1 = document.querySelector(".second")
+
+function updateClock() {
+  const currentDate = new Date() 
+  setTimeout(updateClock,1000) 
+  const hour = currentDate.getHours()
+  const minute = currentDate.getMinutes()
+  const second = currentDate.getSeconds()
+const hourDeg = (hour/12)*360;
+hourE1.style.transform = `rotate(${hourDeg}deg)`
+const minuteDeg = (minute/60)*360;
+minuteE1.style.transform = `rotate(${minuteDeg}deg)`
+const secondDeg = (second/60)*360;
+secondE1.style.transform = `rotate(${secondDeg}deg)`
+}
+updateClock()
+
+</script>
+</html>
